@@ -22,7 +22,7 @@ RUN usermod -u 1000 www-data
 RUN chown -R www-data:www-data /var/www/html/
 RUN sed -i "s/80/8080/g" /etc/apache2/sites-available/000-default.conf /etc/apache2/ports.conf
 
-VOLUME /var/www/html
+COPY ./ /var/www/html
 
 USER www-data
 
