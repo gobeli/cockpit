@@ -19,10 +19,10 @@ RUN echo "extension=mongodb.so" > /usr/local/etc/php/conf.d/mongodb.ini
 RUN echo "extension=redis.so" > /usr/local/etc/php/conf.d/redis.ini
 
 RUN chown -R www-data:www-data /var/www/html
+RUN sed -i "s/80/8080/g" /etc/apache2/sites-available/000-default.conf /etc/apache2/ports.conf
 
 VOLUME /var/www/html
 
-
 EXPOSE 8080
-CMD sed -i "s/80/8080/g" /etc/apache2/sites-available/000-default.conf /etc/apache2/ports.conf && docker-php-entrypoint apache2-foreground
+CMD ["apache2-foreground"]
 
